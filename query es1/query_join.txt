@@ -1,3 +1,5 @@
+GROUP BY
+
 1) SELECT  COUNT(*), YEAR(`enrolment_date`) 
 FROM `students`
 GROUP by YEAR(`enrolment_date`)
@@ -12,3 +14,28 @@ FROM `exam_student`
 4)SELECT COUNT(*), `department_id`
 FROM `degrees`
 GROUP BY `department_id`
+
+JOIN
+
+1) SELECT `students`.`name`, `students`.`surname`, `students`.`date_of_birth`,`students`.`fiscal_code`, `students`.`enrolment_date`,`students`.`registration_number`, `students`.`email`
+FROM `students`
+JOIN `degrees` 
+ON `students`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
+
+2) SELECT `degrees`.*
+FROM `degrees`
+JOIN `departments` 
+ON `degrees`.`department_id` = `departments`.`id`
+WHERE `departments`.`name` = 'Dipartimento di Neuroscienze'
+AND `degrees`.`level` = 'magistrale'
+
+3) SELECT `courses`.*
+FROM `courses`
+JOIN `course_teacher` 
+ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` 
+ON `course_teacher`.`teacher_id` = `teachers`.`id`
+WHERE `teachers`.`name` = 'Fulvio' 
+AND `teachers`.`surname` = 'Amato'
+
